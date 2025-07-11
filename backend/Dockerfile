@@ -5,6 +5,6 @@ RUN gradle build -x test
 
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=builder /app/build/libs/*.jar app.jar
+COPY --from=builder /app/build/libs/*.jar /app/
 EXPOSE 4000
 ENTRYPOINT ["java", "-jar", "app.jar"]
