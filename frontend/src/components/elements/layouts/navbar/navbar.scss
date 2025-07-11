@@ -1,0 +1,25 @@
+@import "../../variables";
+
+.navbar {
+  width: 150px;
+  height: 100vh;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    width: 100%;
+  }
+  a.active .button.nav {
+    background-color: $primary-color-hover;
+  }
+  .top-section{
+    width: 100%;
+  }
+  .bottom-section{
+    width: 100%;
+  }
+}
+

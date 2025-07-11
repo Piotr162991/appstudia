@@ -1,0 +1,599 @@
+@import '../../elements/variables';
+
+// Mixins
+@mixin card-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin gradient-bg($from, $to) {
+  background: linear-gradient(135deg, $from, $to);
+}
+
+// Zmienne kolorów
+$primary-color: #4a89dc;
+$primary-dark: #3b78cc;
+$primary-light: #6c9ee2;
+$accent-color: #5fd3bd;
+$danger-color: #fc5c65;
+$warning-color: #fed330;
+$success-color: #26de81;
+$info-color: #45aaf2;
+
+$technology-color: #3867d6;
+$finance-color: #20bf6b;
+$healthcare-color: #eb3b5a;
+$education-color: #f7b731;
+$manufacturing-color: #8854d0;
+$retail-color: #4b6584;
+
+$gray-100: #f7f9fc;
+$gray-200: #edf2f9;
+$gray-300: #d9e2ec;
+$gray-400: #cbd5e0;
+$gray-500: #a0aec0;
+$gray-600: #718096;
+$gray-700: #4a5568;
+$gray-800: #2d3748;
+$gray-900: #1a202c;
+
+// Animacje
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 137, 220, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 137, 220, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 137, 220, 0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.employer-page {
+  padding: 30px;
+  background-color: $gray-100;
+  min-height: calc(100vh - 60px);
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .header-content {
+      h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: $gray-900;
+        margin: 0;
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: $gray-600;
+        margin: 8px 0 0 0;
+      }
+    }
+
+    .add-employer-btn {
+      @include gradient-bg($primary-color, $primary-dark);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      @include flex-center;
+
+      i {
+        margin-right: 8px;
+        font-size: 16px;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(59, 120, 204, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .employer-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+
+    .dashboard-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 24px;
+      @include card-shadow;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-icon {
+        @include flex-center;
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        margin-right: 20px;
+
+        i {
+          font-size: 24px;
+          color: white;
+        }
+      }
+
+      .card-content {
+        h3 {
+          font-size: 28px;
+          font-weight: 700;
+          color: $gray-900;
+          margin: 0 0 5px 0;
+        }
+
+        p {
+          font-size: 14px;
+          color: $gray-600;
+          margin: 0;
+        }
+      }
+
+      &.total-employers {
+        .card-icon {
+          background-color: $primary-color;
+        }
+      }
+
+      &.avg-employees {
+        .card-icon {
+          background-color: $accent-color;
+        }
+      }
+
+      &.top-industry {
+        .card-icon {
+          background-color: $warning-color;
+        }
+      }
+    }
+  }
+
+  .employer-content {
+    background-color: white;
+    border-radius: 12px;
+    @include card-shadow;
+    overflow: hidden;
+
+    .employer-filters {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 25px;
+      border-bottom: 1px solid $gray-200;
+
+      .search-container {
+        position: relative;
+        flex: 1;
+        margin-right: 20px;
+
+        .search-icon {
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: $gray-500;
+          font-size: 16px;
+        }
+
+        .search-input {
+          width: 97%;
+          padding: 12px 0px 12px 36px;
+          border: 1px solid $gray-300;
+          border-radius: 8px;
+          font-size: 15px;
+          transition: all 0.3s;
+
+          &::placeholder {
+            color: $gray-500;
+          }
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(74, 137, 220, 0.2);
+          }
+        }
+      }
+
+      .filter-container {
+        display: flex;
+        align-items: center;
+
+        .filter-select {
+          padding: 12px 16px;
+          border: 1px solid $gray-300;
+          border-radius: 8px;
+          font-size: 15px;
+          min-width: 200px;
+          margin-right: 12px;
+          background-color: white;
+          color: $gray-800;
+          transition: all 0.3s;
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(74, 137, 220, 0.2);
+          }
+        }
+
+        .filter-button {
+          @include flex-center;
+          background-color: $gray-200;
+          border: none;
+          padding: 12px 18px;
+          border-radius: 8px;
+          font-size: 15px;
+          color: $gray-700;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-weight: 500;
+
+          i {
+            margin-right: 8px;
+          }
+
+          &:hover {
+            background-color: $gray-300;
+          }
+        }
+      }
+    }
+
+    .table-container {
+      padding: 0;
+      overflow-x: auto;
+
+      .table.employers-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+
+        th, td {
+          padding: 18px 24px;
+        }
+
+        th {
+          position: sticky;
+          top: 0;
+          background-color: $gray-100;
+          font-weight: 600;
+          color: $gray-700;
+          text-transform: uppercase;
+          font-size: 12px;
+          letter-spacing: 0.5px;
+          text-align: left;
+          border-bottom: 1px solid $gray-300;
+        }
+
+        td {
+          font-size: 15px;
+          color: $gray-800;
+          border-bottom: 1px solid $gray-200;
+        }
+
+        .employer-row {
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: $gray-100;
+          }
+        }
+
+        .company-name-cell {
+          font-weight: 600;
+          color: $gray-900;
+        }
+
+        .industry-cell {
+          .industry-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: white;
+
+            &.technology {
+              background-color: $technology-color;
+            }
+
+            &.finance {
+              background-color: $finance-color;
+            }
+
+            &.healthcare {
+              background-color: $healthcare-color;
+            }
+
+            &.education {
+              background-color: $education-color;
+            }
+
+            &.manufacturing {
+              background-color: $manufacturing-color;
+            }
+
+            &.retail {
+              background-color: $retail-color;
+            }
+          }
+        }
+
+        .location-cell {
+          .location-info {
+            display: flex;
+            flex-direction: column;
+
+            .city {
+              font-weight: 500;
+              margin-bottom: 4px;
+            }
+
+            .postal-code {
+              font-size: 13px;
+              color: $gray-600;
+            }
+          }
+        }
+
+        .contact-cell {
+          .contact-info {
+            display: flex;
+            flex-direction: column;
+
+            .email {
+              margin-bottom: 4px;
+              color: $primary-color;
+            }
+
+            .phone {
+              font-size: 13px;
+              color: $gray-600;
+            }
+          }
+        }
+
+        .employees-cell {
+          .employees-badge {
+            background-color: $gray-200;
+            color: $gray-700;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+          }
+        }
+
+        .founded-cell {
+          font-weight: 500;
+        }
+
+        .actions-cell {
+          .actions-container {
+            display: flex;
+            gap: 8px;
+
+            .action-btn {
+              width: 36px;
+              height: 36px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+              @include flex-center;
+              transition: all 0.2s;
+
+              i {
+                font-size: 14px;
+              }
+
+              &.view-btn {
+                background-color: $info-color;
+                color: white;
+
+                &:hover {
+                  background-color: darken($info-color, 10%);
+                }
+              }
+
+              &.edit-btn {
+                background-color: $warning-color;
+                color: white;
+
+                &:hover {
+                  background-color: darken($warning-color, 10%);
+                }
+              }
+
+              &.delete-btn {
+                background-color: $danger-color;
+                color: white;
+
+                &:hover {
+                  background-color: darken($danger-color, 10%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .table-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 25px;
+      border-top: 1px solid $gray-200;
+
+      .showing-info {
+        color: $gray-600;
+        font-size: 14px;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 8px;
+
+        .pagination-btn {
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          @include flex-center;
+          border: 1px solid $gray-300;
+          background-color: white;
+          color: $gray-700;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            border-color: $primary-color;
+            color: $primary-color;
+          }
+
+          &.active {
+            background-color: $primary-color;
+            border-color: $primary-color;
+            color: white;
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+
+  .loading-container {
+    @include flex-center;
+    flex-direction: column;
+    height: 400px;
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid $gray-200;
+      border-top: 5px solid $primary-color;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .loading-text {
+      font-size: 18px;
+      color: $gray-600;
+      font-weight: 500;
+    }
+  }
+}
+
+// Responsywność
+@media (max-width: 1200px) {
+  .employer-page {
+    .employer-dashboard {
+      grid-template-columns: repeat(2, 1fr);
+
+      .dashboard-card:last-child {
+        grid-column: span 2;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .employer-page {
+    padding: 20px;
+
+    .employer-filters {
+      flex-direction: column;
+
+      .search-container {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .filter-container {
+        width: 100%;
+
+        .filter-select {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .employer-page {
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .header-content {
+        margin-bottom: 15px;
+      }
+    }
+
+    .employer-dashboard {
+      grid-template-columns: 1fr;
+
+      .dashboard-card:last-child {
+        grid-column: span 1;
+      }
+    }
+
+    .table-footer {
+      flex-direction: column;
+      gap: 15px;
+
+      .showing-info {
+        order: 2;
+      }
+
+      .pagination {
+        order: 1;
+      }
+    }
+  }
+}

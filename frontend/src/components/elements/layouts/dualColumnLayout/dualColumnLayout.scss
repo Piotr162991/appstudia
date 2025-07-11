@@ -1,0 +1,89 @@
+@import "../../variables";
+
+.dual-column-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+  .leftbar {
+    box-shadow: 0px 0px 10px 10px $shadow-color;
+    padding: 23px 30px;
+    margin-bottom: 40px;
+  }
+
+  .rightbar {
+    box-shadow: 0px 0px 10px 10px $shadow-color;
+    padding: 23px 30px;
+    margin-bottom: 40px;
+  }
+
+  &.settings {
+    h2 {
+      margin-top: 0;
+    }
+    .leftbar {
+      width: 480px;
+      min-height: 640px;
+
+      .tab-title {
+        padding-bottom: 16px;
+      }
+
+      .create-attribute {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 0;
+        margin-bottom: 16px;
+        gap: 32px;
+        border-bottom: 2px solid $border-color;
+
+        .button-container {
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+
+      .table-container {
+        padding-top: 28px;
+
+        label {
+          font-weight: 400;
+          color: $text-color-strong;
+          font-size: 15px;
+        }
+      }
+    }
+    .rightbar{
+      width: 480px;
+      min-height: 640px;
+      .tab-title {
+        padding-bottom: 16px;
+      }
+      .edit-users{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+  &.payments{
+    h2{
+      margin-left: 20px;
+    }
+    gap: 55px;
+    .rightbar{
+      width: 100%;
+      max-width: 790px;
+      min-height: 700px;
+      padding: 0;
+
+    }
+    .leftbar{
+      width: 100%;
+      min-height: 700px;
+      max-width: 790px;
+      padding: 0;
+    }
+  }
+
+}

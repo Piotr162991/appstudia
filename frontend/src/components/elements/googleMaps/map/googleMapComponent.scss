@@ -1,0 +1,11 @@
+@import "../../variables";
+
+
+.map {
+  width: 870px;
+  height: 450px;
+  &.estates-list{
+    width: 620px;
+    height: 380px;
+  }
+}
